@@ -36,15 +36,47 @@ export default class SwapiService {
         return result.results;
     }
 
-    getStarship(id) {
-        return this.getResource(`starships/${id}/`);
+    async getStarship(id) {
+        const result = await this.getResource(`starships/${id}/`);
+        return this._transformStarship()
     }
+    _extractId(item) {
+        const idRegExp = /\/([0-9]*)\/$/;
+        return item.url.match(idRegExp)[1];
+    }
+
     _transformPlanet(planet) {
         return {
+            id: this._extractId(planet),
             name: planet.name,
             population: planet.population,
             rotationPeriod: planet.rotation_period,
             diameter: planet.diameter
+        }
+    }
+
+    _transformStarship(starship) {
+        return {
+            id: this._extractId(starship),
+            name: starship.name,
+            model: starship.model,
+            manufacturer: starship.manufacturer,
+            costInCredits: starship.cost_in_credits,
+            length: starship.length,
+            crew: starship.crew,
+            passengers: starship.passengers,
+            cargoCapacity: starship.cargo_capacity
+        }
+    }
+
+    _transformPersone(persone) {
+        return {
+            id: this._extractId(persone),
+            name: persone.name,
+            gender: persone.gender,
+            birthYear: persone.birth_year,
+            eyeColor: persone.eye_color
+
         }
     }
 }
