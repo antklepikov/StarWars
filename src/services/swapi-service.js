@@ -38,7 +38,6 @@ export default class SwapiService {
 
     getStarship(id) {
         return this.getResource(`starships/${id}/`);
-        console.log("jrj");
     }
     _transformPlanet(planet) {
         return {
