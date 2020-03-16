@@ -2,22 +2,9 @@ import React, {Component} from 'react';
 
 import SwapiService from "../../services/swapi-service";
 import ItemList from "../item-list";
-import PersonDetails from "../person-details/person-details";
+import PersonDetails from "../item-details/item-details";
+import Row from "../row";
 
-const Row = ({left, right}) => {
-    return (
-
-        <div className="row mb2 margin">
-            <div className="col-md-6">
-                {left}
-            </div>
-            <div className="col-md-6">
-                {right}
-            </div>
-        </div>
-    );
-
-};
 
 export default class PeoplePage extends Component {
     state = {
@@ -37,7 +24,7 @@ export default class PeoplePage extends Component {
                 renderItem = { (item) => `${item.name} ${item.gender}`} />
         );
         const personDetails = (
-            <PersonDetails personId={this.state.selectedPerson}/>
+            <PersonDetails itemId={this.state.selectedPerson}/>
         );
 
         return (
