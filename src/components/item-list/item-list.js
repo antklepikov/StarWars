@@ -10,8 +10,8 @@ const ItemList = (props) => {
        const { data, loading, onItemSelected, } = props;
        const items = data.map((item) => {
             const {id} = item;
-            const label = props.renderItem(item);
-
+            //const label = props.renderItem(item);
+           const label = props.children(item)
             return (
                 <li className="list-group-item"
                     key={ id }
@@ -24,7 +24,7 @@ const ItemList = (props) => {
 
         if (!loading && !!items) {
             return (
-                <ul className="item-list list-group">
+                <ul className="item-list list-group margin">
                     {items}
                 </ul>
             );

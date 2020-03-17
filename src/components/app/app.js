@@ -20,7 +20,7 @@ export default class App extends Component{
         const planet = this.state.showRandomPlanet ?
             <RandomPlanet /> :
             null;
-        const { getPerson, getStarship, getPersonImage, getStarshipImage} = this.swapiService
+        const { getPerson, getStarship, getPersonImage, getStarshipImage, getAllPeople, getAllPlanets} = this.swapiService
         const personDetails = (
             <ItemDetails
                 itemId = {11}
@@ -44,21 +44,37 @@ export default class App extends Component{
         return (
             <div>
                 <Header />
-                <Row left= {personDetails}
-                     right={starhipDetails} />
+
+                <ItemList className="margin" getData = {getAllPeople}>
+                           {/*renderItem = { (item) => (<span>{item.name}</span>)}>*/}
+                    { ({name}) => <span>{name}</span>}
+                </ItemList>
+                <ItemList className="margin" getData = {getAllPlanets}>
+                    {/*renderItem = { (item) => (<span>{item.name}</span>)}>*/}
+                    { ({name}) => <span>{name}</span>}
+                </ItemList>
+
+
+                <PersonDetails/>
+
+
+
+
+                {/*<Row left= {personDetails}*/}
+                {/*     right={starhipDetails} />*/}
                 {/*<RandomPlanet />*/}
 
                 {/*<PeoplePage />*/}
 
-                <div className="row mb2 margin">
-                    <div className="col-md-6">
-                        <ItemList
-                            onItemSelected = {this.onPersonSelected}
-                            getData = { this.swapiService.getAllPlanets}
-                            renderItem = { (item) => (<span>{item.name}</span>)}
-                        />
-                    </div>
-                </div>
+                {/*<div className="row mb2 margin">*/}
+                {/*    <div className="col-md-6">*/}
+                {/*        <ItemList*/}
+                {/*            onItemSelected = {this.onPersonSelected}*/}
+                {/*            getData = { this.swapiService.getAllPlanets}*/}
+                {/*            renderItem = { (item) => (<span>{item.name}</span>)}*/}
+                {/*        />*/}
+                {/*    </div>*/}
+                {/*</div>*/}
                 {/*    <div className="col-md-6">*/}
                 {/*        <PersonDetails personId = {this.state.selectedPerson}/>*/}
                 {/*    </div>*/}

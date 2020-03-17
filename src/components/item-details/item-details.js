@@ -22,7 +22,6 @@ export default class ItemDetails extends Component {
         image: null
     };
 
-    swapiService = new SwapiService();
 
     componentDidMount() {
         this.updateItem()
